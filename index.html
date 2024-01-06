@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -24,7 +24,7 @@
 <meta property="og:title" content="Catch Yan&#39;s Blog">
 <meta property="og:url" content="http://example.com/index.html">
 <meta property="og:site_name" content="Catch Yan&#39;s Blog">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Catch Yan">
 <meta name="twitter:card" content="summary">
 
@@ -37,7 +37,7 @@
     sidebar: "",
     isHome : true,
     isPost : false,
-    lang   : 'en'
+    lang   : 'zh-CN'
   };
 </script>
 
@@ -81,7 +81,7 @@
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="Toggle navigation bar">
+    <div class="toggle" aria-label="切换导航栏">
       <span class="toggle-line toggle-line-first"></span>
       <span class="toggle-line toggle-line-middle"></span>
       <span class="toggle-line toggle-line-last"></span>
@@ -110,12 +110,12 @@
   <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
-        <li class="menu-item menu-item-archives">
+        <li class="menu-item menu-item-categories">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
   </ul>
@@ -144,7 +144,7 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/vue3/setup/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -167,17 +167,26 @@
               <span class="post-meta-item-icon">
                 <i class="far fa-calendar"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">发表于</span>
 
-              <time title="Created: 2023-12-25 15:03:19" itemprop="dateCreated datePublished" datetime="2023-12-25T15:03:19+08:00">2023-12-25</time>
+              <time title="创建时间：2023-12-25 15:03:19" itemprop="dateCreated datePublished" datetime="2023-12-25T15:03:19+08:00">2023-12-25</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-01-06 12:23:07" itemprop="dateModified" datetime="2024-01-06T12:23:07+08:00">2024-01-06</time>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-01-06 12:41:43" itemprop="dateModified" datetime="2024-01-06T12:41:43+08:00">2024-01-06</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Vue3-%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">Vue3 源码阅读</span></a>
+                </span>
+            </span>
 
           
 
@@ -193,46 +202,14 @@
           <blockquote>
 <p>本系列文章旨在学习 <code>Vue.js</code> 源码，从源码的角度去理解 <code>Vue.js</code> 的设计思想和实现原理。本系列文章的源码版本为发文时最新版本 <a target="_blank" rel="noopener" href="https://github.com/vuejs/core/tree/v3.4.3">3.4.3</a>。本系列文章顺序会按照<code>Vue.js</code>官网的<a target="_blank" rel="noopener" href="https://cn.vuejs.org/guide/introduction.html">深度指南</a>顺序进行分析。笔者能力有限，如有错误，欢迎 <a target="_blank" rel="noopener" href="https://github.com/catchyan/catchyan.github.io/issues">issue</a> 指正。</p>
 </blockquote>
-<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><h3 id="准备工具"><a href="#准备工具" class="headerlink" title="准备工具"></a>准备工具</h3><ul>
-<li><a target="_blank" rel="noopener" href="https://git-scm.com/">Git</a></li>
-<li><a target="_blank" rel="noopener" href="https://nodejs.org/en/">Node.js</a></li>
-<li><a target="_blank" rel="noopener" href="https://pnpm.io/zh/">pnpm</a></li>
-<li><a target="_blank" rel="noopener" href="https://code.visualstudio.com/">VSCode</a></li>
-<li>最后在 VSCode 中搜索 <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=ZixuanChen.vitest-explorer">Vitest</a> 插件并安装，这个插件可以让我们在 VSCode 中直接运行 vitest 测试用例。</li>
-</ul>
-<h3 id="下载源码"><a href="#下载源码" class="headerlink" title="下载源码"></a>下载源码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/vuejs/core.git</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/vitejs/vite.git</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/vitejs/vite-plugin-vue.git</span><br></pre></td></tr></table></figure>
-
-<h3 id="创建demo项目"><a href="#创建demo项目" class="headerlink" title="创建demo项目"></a>创建demo项目</h3><p>跟随<a target="_blank" rel="noopener" href="https://cn.vuejs.org/guide/quick-start.html">快速上手</a>创建一个demo项目</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm create vue@latest</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">✔ Project name: … &lt;your-project-name&gt;</span><br><span class="line">✔ Add TypeScript? … No / Yes</span><br><span class="line">✔ Add JSX Support? … No / Yes</span><br><span class="line">✔ Add Vue Router <span class="keyword">for</span> Single Page Application development? … No / Yes</span><br><span class="line">✔ Add Pinia <span class="keyword">for</span> state management? … No / Yes</span><br><span class="line">✔ Add Vitest <span class="keyword">for</span> Unit testing? … No / Yes</span><br><span class="line">✔ Add an End-to-End Testing Solution? … No / Cypress / Playwright</span><br><span class="line">✔ Add ESLint <span class="keyword">for</span> code quality? … No / Yes</span><br><span class="line">✔ Add Prettier <span class="keyword">for</span> code formatting? … No / Yes</span><br><span class="line"></span><br><span class="line">Scaffolding project <span class="keyword">in</span> ./&lt;your-project-name&gt;...</span><br><span class="line">Done.</span><br></pre></td></tr></table></figure>
-<p>当前项目目录结构如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── core    // Vue3 源码</span><br><span class="line">├── demo    // demo 项目</span><br><span class="line">├── vite    // vite 源码</span><br><span class="line">└── vite-plugin-vue // vite-plugin-vue 源码</span><br></pre></td></tr></table></figure>
-
-<h2 id="本地源码链接"><a href="#本地源码链接" class="headerlink" title="本地源码链接"></a>本地源码链接</h2><p>想要直接在源码中打断点进行调试，可以使用 pnpm 的 <a target="_blank" rel="noopener" href="https://pnpm.io/zh/workspaces#workspace-%E5%8D%8F%E8%AE%AE-workspace">Workspace 协议</a>，从工作区中链接本地源码。之后通过开启 rollup 的 sourcemap 打包选项，就可以在源码中打断点进行调试了。</p>
-<h3 id="修改-demo-项目的包依赖"><a href="#修改-demo-项目的包依赖" class="headerlink" title="修改 demo 项目的包依赖"></a>修改 demo 项目的包依赖</h3><p>在脚手架创建好的工程的中修改 package.json 文件：</p>
-<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  &quot;dependencies&quot;: &#123;</span><br><span class="line"><span class="deletion">-   &quot;vue&quot;: &quot;^3.3.11&quot;</span></span><br><span class="line"><span class="addition">+   &quot;vue&quot;: &quot;workspace:../core/packages/vue&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;devDependencies&quot;: &#123;</span><br><span class="line"><span class="deletion">-   &quot;@vitejs/plugin-vue&quot;: &quot;^4.5.2&quot;,</span></span><br><span class="line"><span class="addition">+   &quot;@vitejs/plugin-vue&quot;: &quot;workspace:../vite-plugin-vue/packages/plugin-vue&quot;,</span></span><br><span class="line"><span class="deletion">-   &quot;vite&quot;: &quot;^5.0.10&quot;</span></span><br><span class="line"><span class="addition">+   &quot;vite&quot;: &quot;workspace:../vite/packages/vite&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<h3 id="修改各个源码包的打包参数"><a href="#修改各个源码包的打包参数" class="headerlink" title="修改各个源码包的打包参数"></a>修改各个源码包的打包参数</h3><p>core\package.json</p>
-<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">&quot;scripts&quot;: &#123;</span><br><span class="line">    ...</span><br><span class="line"><span class="deletion">-   &quot;build&quot;: &quot;node scripts/build.js&quot;,    </span></span><br><span class="line"><span class="addition">+   &quot;build&quot;: &quot;node scripts/build.js --sourcemap&quot;,</span></span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>vite-plugin-vue\packages\plugin-vue\build.config.ts</p>
-<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  rollup: &#123;</span><br><span class="line">    ...</span><br><span class="line"><span class="addition">+   output: &#123;</span></span><br><span class="line"><span class="addition">+     sourcemap: true,</span></span><br><span class="line"><span class="addition">+   &#125;</span></span><br><span class="line">    ...</span><br><span class="line">  &#125;,</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<h3 id="安装依赖并打包源码"><a href="#安装依赖并打包源码" class="headerlink" title="安装依赖并打包源码"></a>安装依赖并打包源码</h3><p>进入各个源码文件夹，运行 pnpm install 和 pnpm run build 命令，安装依赖并打包源码。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> core</span><br><span class="line">pnpm install &amp;&amp; pnpm run build</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> vite-plugin-vue/packages/plugin-vue</span><br><span class="line">pnpm install &amp;&amp; pnpm run build</span><br></pre></td></tr></table></figure>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> vite/packages/vite</span><br><span class="line">pnpm install &amp;&amp; pnpm run build</span><br></pre></td></tr></table></figure>
-
-<h3 id="开启debug模式"><a href="#开启debug模式" class="headerlink" title="开启debug模式"></a>开启debug模式</h3><p>在 vite\packages\vite\src\node\cli.ts 的第一句话设置断点（左键单击行号左侧区域即可设置断点）</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">const</span> cli = <span class="title function_">cac</span>(<span class="string">&#x27;vite&#x27;</span>) <span class="comment">// 设置断点</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-
-<p>在 VSCode 中按下打开终端，在 + 号右侧的下拉菜单中选择 JavaScript Debug Terminal，输入：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> demo</span><br><span class="line">pnpm install &amp;&amp; pnpm run dev</span><br></pre></td></tr></table></figure>
-
-<p>如果以上设置正确，你应该会在刚刚设置的断点处停下来。至此调试环境搭建完毕。</p>
-<p>Enjoy debugging!</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/vue3/setup/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -291,10 +268,10 @@
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          文章目录
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          站点概览
         </li>
       </ul>
 
@@ -311,11 +288,16 @@
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
+          <a href="/archives">
           <span class="site-state-item-count">1</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-name">日志</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
 </div>
@@ -347,7 +329,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Catch Yan</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
 
         
